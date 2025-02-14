@@ -1,0 +1,36 @@
+---
+
+# Prepares the existing PostgreSQL database for Tobira
+
+#- name: Install PostgreSQL
+#  ansible.builtin.package:
+#    state: present
+#    name:
+#      - python3-psycopg2
+
+# This is necessary for non-Debian systems (which use dnf or yum)
+
+- name: Initialize PostgreSQL
+  command:
+    cmd: postgresql-setup --initdb
+    creates: /var/lib/pgsql/data/postgresql.conf
+  environment:
+    PGSETUP_INITDB_OPTIONS: "--auth-local=peer --auth-host=scram-sha-256"
+  notify: restart postgresql
+
+- name: Create tobira postgres user
+  become_user: postgres
+  community.postgresql.postgresql_user:
+    name: "{{ tobira_db_user }}"
+    password: "{{ tobira_db_password }}"
+
+- name: Create database
+  become_user: postgres
+  community.postgresql.postgresql_db:
+    name: "{{ tobira_db }}"
+    owner: "{{ tobira_db_user }}"
+
+- name: Enable PostgreSQL
+  ansible.builtin.service:
+    name: postgresql
+    enabled: yes

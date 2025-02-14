@@ -1,0 +1,13 @@
+---
+
+- name: Restart opencast service on all specified hosts
+  hosts:
+    - admin
+    - presentation
+    - worker
+  tasks:
+    - name: Restart opencast
+      become: true
+      ansible.builtin.systemd:
+        state: restarted
+        name: opencast

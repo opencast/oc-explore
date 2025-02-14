@@ -1,0 +1,96 @@
+---
+
+- name: Create tobira user
+  ansible.builtin.user:
+    name: tobira
+
+- name: Create application and logging directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: tobira
+    group: tobira
+    mode: '0755'
+  with_items:
+    - /opt/tobira
+    - /var/log/tobira
+
+- name: Deploy Tobira executable
+  ansible.builtin.get_url:
+    url: '{{ tobira_release_url }}'
+    checksum: '{{ tobira_release_checksum }}'
+    dest: /opt/tobira/tobira
+    force: true
+    mode: '0750'
+    owner: tobira
+    group: tobira
+  notify: Restart tobira
+
+- name: Deploy assets
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: /opt/tobira/
+    owner: tobira
+    group: tobira
+    mode: '0644'
+  loop:
+    - logo-wide-light.svg
+    - logo-wide-dark.svg
+    - logo-narrow.svg
+    - favicon.svg
+  notify: Restart tobira
+
+- name: Deploy configuration
+  ansible.builtin.template:
+    src: "{{ item }}"
+    dest: /opt/tobira/
+    owner: tobira
+    group: tobira
+    mode: '0640'
+  loop:
+    - config.toml
+    - jwt-key.pem
+  notify: Restart tobira
+
+
+- name: Install tobira service files
+  ansible.builtin.template:
+    src: '{{ item }}.service'
+    dest: /etc/systemd/system/{{ item }}.service
+    mode: '0644'
+    owner: root
+    group: root
+  with_items:
+    - tobira
+    - tobira-worker
+  register: tobira_systemd_unit_files_installed
+  notify: Restart tobira
+
+- name: Reload Systemd   # noqa no-handler
+  ansible.builtin.systemd:
+    daemon_reload: true
+  when: tobira_systemd_unit_files_installed is changed
+
+- name: Enable tobira
+  ansible.builtin.systemd:
+    name: '{{ item }}'
+    enabled: true
+  with_items:
+    - tobira
+    - tobira-worker
+
+- name: Run tobira check block
+  tags:
+    - tobira-check
+  block:
+    - name: Run tobira check
+      ansible.builtin.command: ./tobira check
+      args:
+        chdir: /opt/tobira
+      register: tobira_check
+      no_log: true
+      changed_when: false
+  always:
+    - name: Print results
+      ansible.builtin.debug:
+        msg: "{{ tobira_check.stdout_lines }}"

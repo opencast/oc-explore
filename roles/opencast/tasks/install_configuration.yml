@@ -1,0 +1,34 @@
+---
+
+- name: Copy config files that require restart
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: '/etc/opencast/{{ item.split("etc/") | last }}'
+    owner: opencast
+    group: opencast
+    mode: "0644"
+  with_fileglob:
+    - "etc/*"
+
+    - "etc/ui-config/mh_default_org/paella7/*"
+    - "etc/ui-config/mh_default_org/studio/*"
+  notify: Restart opencast
+  tags:
+    - copy_configuration
+
+- name: Create configs from templates
+  ansible.builtin.template:
+    src: "{{ item }}.j2"
+    dest: "/etc/opencast/{{ item }}"
+    owner: opencast
+    group: opencast
+    mode: "0644"
+  loop:
+    - security/mh_default_org.xml
+    - custom.properties
+    - org.opencastproject.organization-mh_default_org.cfg
+    - org.opencastproject.assetmanager.auth.AssetManagerStaticFileAuthorization.cfg
+    - org.opencastproject.fsresources.SimpleConfigurableStaticFileAuthorization.cfg
+  notify: Restart opencast
+  tags:
+    - copy_configuration

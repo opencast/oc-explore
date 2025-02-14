@@ -1,0 +1,34 @@
+---
+
+- name: Set opencast mount directory permissions
+  ansible.builtin.file:
+    path: '{{ opencast_storage_folder }}'
+    state: directory
+    mode: 0755
+    owner: opencast
+    group: opencast
+
+- name: Test if Opencast is installed
+  ansible.builtin.dnf:
+    name: "opencast-{{ opencast_role }}-{{ opencast_version }}"
+    enablerepo: "{{ opencast_repository_identifiers|union(opencast_repository_identifiers_testing) }}"
+  check_mode: true
+  register: opencast_check_install
+
+- name: Uninstall Opencast
+  ansible.builtin.include_tasks: uninstall_opencast.yml
+  when: opencast_check_install is changed
+
+- name: Install Opencast package
+  ansible.builtin.dnf:
+    name:
+      - opencast-{{ opencast_role }}-{{ opencast_version }}
+  notify: Restart opencast
+
+- name: Import opencast configuration tasks
+  ansible.builtin.include_tasks: install_configuration.yml
+
+- name: Enable Opencast service
+  ansible.builtin.service:
+    name: opencast.service
+    enabled: true

@@ -1,0 +1,16 @@
+---
+
+- name: Remove previous Opencast version
+  ansible.builtin.dnf:
+    name: opencast-{{ opencast_role }}
+    state: absent
+
+
+- name: Remove previous Opencast configuration
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - /etc/opencast
+    - /usr/share/opencast
+    - /etc/systemd/system/opencast.service.d

@@ -1,0 +1,8 @@
+---
+
+# Combine preparations and Opencast installation
+- name: Opencast preparation for debian
+  import_playbook: oc_preparation.yml
+
+- name: Opencast setup for debian
+  import_playbook: oc_setup.yml

@@ -1,0 +1,5 @@
+---
+- name: Restart opencast
+  ansible.builtin.service:
+    name: opencast
+    state: restarted

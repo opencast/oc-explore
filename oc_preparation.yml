@@ -1,0 +1,15 @@
+---
+- name: Configure Opencast User, Nginx, and Certbot on opencast hosts
+  hosts: opencast
+  become: true
+  roles:
+    - role: elan.opencast_user
+    - role: elan.simple_nginx_reverse_proxy
+    - role: elan.elan_certbot
+
+- name: Configure PostgreSQL and Opencast user on database hosts
+  hosts: database
+  become: true
+  roles:
+    - role: elan.opencast_postgresql
+    - role: elan.opencast_user

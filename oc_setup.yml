@@ -1,0 +1,16 @@
+---
+
+- name: Run Opencast Repository and OpenSearch role on admin hosts
+  hosts: admin
+  become: true
+  roles:
+    - role: elan.opencast_opensearch
+      opencast_opensearch_heap_size: 2g
+
+- name: Run Opencast Repository role on opencast hosts
+  hosts: opencast
+  become: true
+  roles:
+    - role: elan.opencast_repository
+    - role: opencast
+  tags: opencast

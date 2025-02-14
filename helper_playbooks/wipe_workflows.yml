@@ -1,0 +1,14 @@
+---
+
+- name: Wipe workflow folder
+  ansible.builtin.file:
+    path: /etc/opencast/workflows/
+    state: "{{ item }}"
+    owner: opencast
+    group: opencast
+    mode: "0755"
+  loop:
+    - absent
+    - directory
+  tags:
+    - wipe_workflows

@@ -1,0 +1,12 @@
+---
+roles:
+ - name: elan.opencast_repository
+   version: 1.0.0
+ - name: elan.opencast_user
+   version: v0.1.0
+ - name: elan.elan_certbot
+   version: 0.4.0
+ - name: elan.simple_nginx_reverse_proxy
+   version: 0.2.1
+ - name: elan.opencast_opensearch
+   version: 0.2.0

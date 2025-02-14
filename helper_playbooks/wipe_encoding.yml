@@ -1,0 +1,14 @@
+---
+
+- name: Wipe encoding folder
+  ansible.builtin.file:
+    path: /etc/opencast/encoding/
+    state: "{{ item }}"
+    owner: opencast
+    group: opencast
+    mode: "0755"
+  loop:
+    - absent
+    - directory
+  tags:
+    - wipe_encoding

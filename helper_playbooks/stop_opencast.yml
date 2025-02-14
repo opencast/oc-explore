@@ -1,0 +1,14 @@
+---
+
+- name: Stop opencast service on all specified hosts
+  hosts:
+    - admin
+    - presentation
+    - worker
+  become: true
+  tasks:
+    - name: Stop opencast
+      ansible.builtin.systemd:
+        name: opencast.service
+        state: stopped
+        enabled: false

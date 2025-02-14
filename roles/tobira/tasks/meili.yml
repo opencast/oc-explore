@@ -1,0 +1,46 @@
+---
+# Sets up MeiliSearch, the search index for Tobira.
+
+- name: Create MeiliSearch directory
+  ansible.builtin.file:
+    path: /opt/meili
+    state: directory
+    mode: '0755'
+
+- name: Install MeiliSearch
+  ansible.builtin.get_url:
+    url: '{{ tobira_meili_url }}'
+    checksum: '{{ tobira_meili_checksum }}'
+    dest: /opt/meili/meilisearch
+    mode: '0755'
+    force: true
+    owner: root
+    group: root
+  register: meilisearch_version
+  notify: Restart meili
+
+- name: Install MeiliSearch service file
+  ansible.builtin.template:
+    src: meili.service
+    dest: /etc/systemd/system/meili.service
+    mode: '0644'
+    owner: root
+    group: root
+  register: meili_service_install
+  notify: Restart meili
+
+- name: Remove search index
+  ansible.builtin.file:
+    state: absent
+    path: /opt/meili/data.ms
+  when: meilisearch_version is changed
+
+- name: Reload systemd daemon
+  ansible.builtin.systemd:
+    daemon_reload: true
+  when: meili_service_install is changed
+
+- name: Enable Meili
+  ansible.builtin.service:
+    name: meili
+    enabled: true
