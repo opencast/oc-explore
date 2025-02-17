@@ -1,7 +1,7 @@
 ---
 
 - name: Run Opencast Repository and OpenSearch role on admin hosts
-  hosts: admin
+  hosts: opencast
   become: true
   roles:
     - role: elan.opencast_opensearch
