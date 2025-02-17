@@ -8,5 +8,6 @@ roles:
    version: 0.4.0
  - name: elan.simple_nginx_reverse_proxy
    version: 0.2.1
+ - name: elan.opencast_postgresql
  - name: elan.opencast_opensearch
    version: 0.2.0

@@ -12,8 +12,8 @@
 
 - name: Initialize PostgreSQL
   command:
-    cmd: postgresql-setup --initdb
-    creates: /var/lib/pgsql/data/postgresql.conf
+    cmd: /usr/pgsql-17/bin/postgresql-17-setup initdb
+    creates: /var/lib/pgsql/17/data/postgresql.conf
   environment:
     PGSETUP_INITDB_OPTIONS: "--auth-local=peer --auth-host=scram-sha-256"
   notify: restart postgresql
@@ -32,5 +32,5 @@
 
 - name: Enable PostgreSQL
   ansible.builtin.service:
-    name: postgresql
+    name: postgresql-17
     enabled: yes

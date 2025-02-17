@@ -6,6 +6,7 @@
     - role: elan.opencast_user
     - role: elan.simple_nginx_reverse_proxy
     - role: elan.elan_certbot
+      tags: certbot
 
 - name: Configure PostgreSQL and Opencast user on database hosts
   hosts: database
