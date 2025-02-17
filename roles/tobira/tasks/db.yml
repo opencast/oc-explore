@@ -2,11 +2,13 @@
 
 # Prepares the existing PostgreSQL database for Tobira
 
-#- name: Install PostgreSQL
-#  ansible.builtin.package:
-#    state: present
-#    name:
-#      - python3-psycopg2
+- name: Install PostgreSQL
+  ansible.builtin.package:
+    state: present
+    name:
+      # The main package is already installed by another role
+      - postgresql-contrib
+      # - python3-psycopg2
 
 # This is necessary for non-Debian systems (which use dnf or yum)
 
