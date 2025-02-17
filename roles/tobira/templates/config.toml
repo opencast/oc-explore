@@ -550,18 +550,10 @@ favicon = "favicon.svg"
 #
 # Required! This value must be specified.
 logos = [
-    { path = "logo-wide-light.svg", mode = "light", size = "wide", resolution = [
-        425,
-        182,
-    ] },
-    { path = "logo-wide-dark.svg", mode = "dark", size = "wide", resolution = [
-        425,
-        182,
-    ] },
-    { path = "logo-narrow.svg", size = "narrow", resolution = [
-        212,
-        182,
-    ] },
+    { path = "logo-light.svg", mode = "light", size = "wide", resolution = [480, 130] },
+    { path = "logo-dark.svg", mode = "dark", size = "wide", resolution = [480, 130] },
+    { path = "logo-light-narrow.svg", mode = "light", size = "narrow", resolution = [170, 130] },
+    { path = "logo-dark-narrow.svg", mode = "dark", size = "narrow", resolution = [170, 130] },
 ]
 
 
@@ -571,7 +563,8 @@ logos = [
 # perceived brightness (L in LCH color space) of 35-55.
 #
 # Default value: "#01758f"
-#primary = "#01758f"
+primary = "#45617e"  # Opencast blue
+#primary = "#25704a"  # Opencast green
 
 # A color used to indicate errors and potentially destructive actions.
 # Should be red.
@@ -600,14 +593,14 @@ logos = [
 # `font-family`.
 #
 # Default value: "'Open Sans'"
-#main_family = "'Open Sans'"
+main_family = "'Segoe UI Adjusted', 'Noto Sans', 'Open Sans'"
 
 # Path to a CSS file with extra `@font-face` declarations. If you want to
 # refer to files included via `font_files` (see below), be sure to to
 # include the full path, e.g. `/~assets/fonts/vollkorn-400.woff2`. That's
 # required as the font files are served with a hashed filename for
 # caching and Tobira needs to fix up the path in your CSS.
-#extra_css =
+extra_css = "font.css"
 
 # Additional font files to serve under `/~assets/fonts/`. Prefer using the
 # WOFF 2.0 format: it has excellent browser support and great compression.
