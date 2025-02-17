@@ -19,7 +19,7 @@
 # heading on the home page, and potentially more.
 #
 # Required! This value must be specified.
-site_title = OC Explore
+site_title.default = Opencast Explore
 
 # Public URL to Tobira (without path).
 # Used for RSS feeds, as those require specifying absolute URLs to resources.
@@ -27,7 +27,7 @@ site_title = OC Explore
 # Example: "https://tobira.my-uni.edu".
 #
 # Required! This value must be specified.
-#tobira_url = "https://{{ groups['tobira'][0] }}"
+tobira_url = "https://{{ groups['tobira'][0] }}"
 
 # Terms and conditions that a user has to agree to in order to use Tobira.
 # This consists of a title, a markdown rendered text explaining what a user
