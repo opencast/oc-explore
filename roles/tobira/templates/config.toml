@@ -19,7 +19,7 @@
 # heading on the home page, and potentially more.
 #
 # Required! This value must be specified.
-site_title.default = Opencast Explore
+site_title.default = "Opencast Explore"
 
 # Public URL to Tobira (without path).
 # Used for RSS feeds, as those require specifying absolute URLs to resources.

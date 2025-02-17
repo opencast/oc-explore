@@ -17,8 +17,8 @@
 
 - name: Deploy Tobira executable
   ansible.builtin.get_url:
-    url: '{{ tobira_release_url }}'
-    checksum: '{{ tobira_release_checksum }}'
+    url: '{{ tobira_binary_url }}'
+    checksum: '{{ tobira_binary_checksum }}'
     dest: /opt/tobira/tobira
     force: true
     mode: '0750'
@@ -34,10 +34,13 @@
     group: tobira
     mode: '0644'
   loop:
-    - logo-wide-light.svg
-    - logo-wide-dark.svg
-    - logo-narrow.svg
+    - logo-light.svg
+    - logo-dark.svg
+    - logo-light-narrow.svg
+    - logo-dark-narrow.svg
+    - font.css
     - favicon.svg
+    - jwt-key.pem
   notify: Restart tobira
 
 - name: Deploy configuration
@@ -49,7 +52,6 @@
     mode: '0640'
   loop:
     - config.toml
-    - jwt-key.pem
   notify: Restart tobira
 
 
