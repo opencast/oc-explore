@@ -1,0 +1,9 @@
+---
+
+- name: Install Tobira
+  hosts: tobira
+  become: true
+  roles:
+    - tobira
+  tags: tobira
+

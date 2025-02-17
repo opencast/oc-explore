@@ -1,7 +1,7 @@
 ---
 
 # DB
-tobira_db_host: localhost
+tobira_db_host: 127.0.0.1
 tobira_db_user: tobira
 tobira_db_password: "{{ vault_tobira_db_password }}"
 tobira_db: tobira

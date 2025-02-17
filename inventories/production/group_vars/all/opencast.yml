@@ -1,7 +1,7 @@
 ---
 
 # Opencast
-admin_email: admin@localhost #Change me
+admin_email: opencast-support@elan-ev.de
 opencast_version_major: 17
 opencast_version_minor: 1
 # Enable Opencast release repository
@@ -13,11 +13,10 @@ opencast_admin_password: "{{ vault_opencast_admin_password }}"
 opencast_digest_password: "{{ vault_opencast_digest_password }}"
 
 # Database
-database_name: opencast
-database_user_name: opencast
-database_root_user: root
-database_password: "{{ vault_database_password }}"
-database_root_password: "{{ vault_database_root_password }}"
+opencast_postgresql_version: 17
+opencast_postgresql_database: opencast
+opencast_postgresql_user: opencast
+opencast_postgresql_password: "{{ vault_database_password }}"
 
 # Optional configurations
 
@@ -31,7 +30,7 @@ database_root_password: "{{ vault_database_root_password }}"
 opencast_storage_folder: isi6g-nfs.rz.uos.de:/opencast-explore
 
 # Mail Letsencrypt
-opencast_letsencrypt_email: beispiel@elan-ev.de #Change me
+elan_certbot_letsencrypt_email: opencast-support@elan-ev.de
 
 opencast_cors_urls: []
 
