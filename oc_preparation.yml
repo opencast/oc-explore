@@ -5,6 +5,11 @@
   roles:
     - role: elan.opencast_user
     - role: elan.simple_nginx_reverse_proxy
+      nginx_config:
+        - src: roles/nginx_extras/templates/nginx.conf
+          dest: nginx.conf
+      configure_for_selinux: true
+      configure_for_firewalld: true
     - role: elan.elan_certbot
       tags: certbot
 
