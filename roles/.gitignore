@@ -1,0 +1,6 @@
+elan.opencast_opensearch/
+elan.opencast_postgresql/
+elan.opencast_repository/
+elan.opencast_user/
+elan.elan_certbot/
+elan.simple_nginx_reverse_proxy/
