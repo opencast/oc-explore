@@ -27,10 +27,9 @@ opencast_postgresql_password: "{{ vault_database_password }}"
 # opencast_mariadb_innodb_buffer_pool_size:
 
 # Storage
-opencast_storage_folder: isi6g-nfs.rz.uos.de:/opencast-explore
+opencast_storage_folder: /mnt/opencast
 
 # Mail Letsencrypt
 elan_certbot_letsencrypt_email: opencast-support@elan-ev.de
 
 opencast_cors_urls: []
-
