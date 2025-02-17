@@ -13,7 +13,7 @@ opencast_admin_password: "{{ vault_opencast_admin_password }}"
 opencast_digest_password: "{{ vault_opencast_digest_password }}"
 
 # Database
-opencast_postgresql_version: 17
+opencast_postgresql_version: 16
 opencast_postgresql_database: opencast
 opencast_postgresql_user: opencast
 opencast_postgresql_password: "{{ vault_database_password }}"
