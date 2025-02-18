@@ -1,12 +1,12 @@
 ---
-
-- name: Set opencast mount directory permissions
-  ansible.builtin.file:
-    path: '{{ opencast_storage_folder }}'
-    state: directory
-    mode: 0755
-    owner: opencast
-    group: opencast
+#
+#- name: Set opencast mount directory permissions
+#  ansible.builtin.file:
+#    path: '{{ opencast_storage_folder }}'
+#    state: directory
+#    mode: 0755
+#    owner: opencast
+#    group: opencast
 
 - name: Test if Opencast is installed
   ansible.builtin.dnf:

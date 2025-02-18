@@ -27,6 +27,8 @@ opencast_postgresql_password: "{{ vault_database_password }}"
 # opencast_mariadb_innodb_buffer_pool_size:
 
 # Storage
+nfs_opencast_share_server_url: isi6g-nfs.rz.uos.de:/opencast-explore
+opencast_nfs_mountpoint: /mnt/opencast
 opencast_storage_folder: /mnt/opencast
 
 # Mail Letsencrypt

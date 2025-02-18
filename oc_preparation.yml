@@ -12,6 +12,7 @@
       configure_for_firewalld: true
     - role: elan.elan_certbot
       tags: certbot
+    - role: nfs_client
 
 - name: Configure PostgreSQL and Opencast user on database hosts
   hosts: database

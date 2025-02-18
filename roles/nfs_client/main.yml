@@ -1,0 +1,22 @@
+---
+
+- name: Install nfs client
+  package:
+    name: nfs-utils
+
+- name: Mount Opencast share
+  mount:
+    path: '{{ opencast_nfs_mountpoint }}'
+    src: '{{ nfs_opencast_share_server_url }}'
+    fstype: nfs
+    opts: _netdev,async
+    state: mounted
+
+- name: Set opencast mount directory permissions
+  ansible.builtin.file:
+    path: '{{ opencast_nfs_mountpoint }}'
+    state: directory
+    mode: 0755
+    owner: opencast
+    group: opencast
+
