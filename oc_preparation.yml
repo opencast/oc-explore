@@ -10,9 +10,10 @@
           dest: nginx.conf
       configure_for_selinux: true
       configure_for_firewalld: true
-    - role: elan.elan_certbot
-      tags: certbot
+    #- role: elan.elan_certbot
+     # tags: certbot
     - role: nfs_client
+    - role: certbot
 
 - name: Configure PostgreSQL and Opencast user on database hosts
   hosts: database

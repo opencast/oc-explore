@@ -32,6 +32,6 @@ opencast_nfs_mountpoint: /mnt/opencast
 opencast_storage_folder: /mnt/opencast
 
 # Mail Letsencrypt
-elan_certbot_letsencrypt_email: opencast-support@elan-ev.de
+opencast_letsencrypt_email: opencast-support@elan-ev.de
 
 opencast_cors_urls: []

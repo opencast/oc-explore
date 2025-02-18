@@ -1,0 +1,38 @@
+---
+
+- name: Install certbot on RedHat
+  block:
+    - name: Install epel repo
+      ansible.builtin.dnf:
+        name: epel-release
+    - name: Install certbot
+      ansible.builtin.dnf:
+        name: certbot
+        enablerepo: epel
+
+- name: Generate initial certificate
+  shell:
+    cmd: >
+      certbot
+      certonly
+      --agree-tos
+      -m {{ opencast_letsencrypt_email }}
+      -n -a webroot
+      --webroot-path /var/lib/nginx/
+      --domains {{ inventory_hostname }}
+      --deploy-hook="systemctl reload nginx"
+    creates: /etc/letsencrypt/live/{{ inventory_hostname }}/fullchain.pem
+
+- name: Symlink certificates
+  file:
+    src: /etc/letsencrypt/live/{{ item.src }}
+    dest: /etc/nginx/tls/{{ item.dest }}
+    state: link
+    force: true
+  loop:
+    - src: '{{ inventory_hostname }}/fullchain.pem'
+      dest: '{{ inventory_hostname }}.crt'
+    - src: '{{ inventory_hostname }}/privkey.pem'
+      dest: '{{ inventory_hostname }}.key'
+  notify: Reload nginx
+
