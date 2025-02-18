@@ -10,4 +10,5 @@ roles:
    version: 0.2.1
  - name: elan.opencast_postgresql
  - name: elan.opencast_opensearch
-   version: 0.2.0
+   src: https://github.com/elan-ev/opencast_opensearch
+   #version: 0.2.0
