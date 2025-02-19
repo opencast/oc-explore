@@ -24,7 +24,6 @@
     group: opencast
     mode: "0644"
   loop:
-    - security/mh_default_org.xml
     - custom.properties
     - org.opencastproject.assetmanager.auth.AssetManagerStaticFileAuthorization.cfg
     - org.opencastproject.fsresources.SimpleConfigurableStaticFileAuthorization.cfg
