@@ -10,8 +10,6 @@
           dest: nginx.conf
       configure_for_selinux: true
       configure_for_firewalld: true
-    #- role: elan.elan_certbot
-     # tags: certbot
     - role: nfs_client
     - role: certbot
 
