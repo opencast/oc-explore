@@ -2,9 +2,7 @@
 
 - name: Stop opencast service on all specified hosts
   hosts:
-    - admin
-    - presentation
-    - worker
+    - allinone
   become: true
   tasks:
     - name: Stop opencast
