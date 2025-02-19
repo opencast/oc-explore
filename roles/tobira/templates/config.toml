@@ -392,7 +392,7 @@ secret_key = "jwt-key.pem"
 # `${cmd}` in this value is replaced by the subcommand name of the Tobira
 # process, e.g. `serve`, `worker` or `other` (for less important
 # commands). Example: "/var/log/tobira-${job}.log".
-file = "/var/log/tobira/tobira.log"
+file = "/var/log/tobira/tobira-${cmd}.log"
 
 # If this is set to `false`, log messages are not written to stdout.
 #
