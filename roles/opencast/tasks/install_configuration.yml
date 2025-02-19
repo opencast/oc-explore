@@ -9,9 +9,6 @@
     mode: "0644"
   with_fileglob:
     - "etc/*"
-
-    - "etc/ui-config/mh_default_org/paella7/*"
-    - "etc/ui-config/mh_default_org/studio/*"
   notify: Restart opencast
   tags:
     - copy_configuration
@@ -25,8 +22,6 @@
     mode: "0644"
   loop:
     - custom.properties
-    - org.opencastproject.assetmanager.auth.AssetManagerStaticFileAuthorization.cfg
-    - org.opencastproject.fsresources.SimpleConfigurableStaticFileAuthorization.cfg
   notify: Restart opencast
   tags:
     - copy_configuration
