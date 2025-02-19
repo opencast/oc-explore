@@ -26,7 +26,6 @@
   loop:
     - security/mh_default_org.xml
     - custom.properties
-    - org.opencastproject.organization-mh_default_org.cfg
     - org.opencastproject.assetmanager.auth.AssetManagerStaticFileAuthorization.cfg
     - org.opencastproject.fsresources.SimpleConfigurableStaticFileAuthorization.cfg
   notify: Restart opencast
