@@ -29,7 +29,7 @@ opencast_postgresql_password: "{{ vault_database_password }}"
 # Storage
 nfs_opencast_share_server_url: isi6g-nfs.rz.uos.de:/opencast-explore
 opencast_nfs_mountpoint: /mnt/opencast
-opencast_storage_folder: /mnt/opencast
+opencast_storage_folder: "{{ opencast_nfs_mountpoint }}"
 
 # Mail Letsencrypt
 opencast_letsencrypt_email: opencast-support@elan-ev.de
