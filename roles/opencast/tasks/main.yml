@@ -32,3 +32,9 @@
   ansible.builtin.service:
     name: opencast.service
     enabled: true
+
+- name: Allow nginx to access NFS mount in SELinux
+  ansible.posix.seboolean:
+    name: httpd_use_nfs
+    state: true
+    persistent: true
