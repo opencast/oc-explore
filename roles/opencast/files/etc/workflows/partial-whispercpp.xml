@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition xmlns="http://workflow.opencastproject.org">
+  <id>partial-whispercpp</id>
+  <title>Generate subtiltes with whispercpp</title>
+  <operations>
+    <operation
+        id="analyze-tracks"
+        fail-on-error="true"
+        exception-handler-workflow="partial-error"
+        description="Analyze tracks in media package and set control variables">
+      <configurations>
+        <configuration key="source-flavor">*/source</configuration>
+      </configurations>
+    </operation>
+
+
+    <!-- Extract Audio File  -->
+
+    <operation
+        id="encode"
+        fail-on-error="true"
+        exception-handler-workflow="partial-error"
+        description="Extract audio for processing with whispercpp for presenter only">
+      <configurations>
+        <configuration key="source-flavor">presenter/source</configuration>
+        <configuration key="target-flavor">*/audio+stt</configuration>
+        <configuration key="encoding-profile">audio-whispercpp</configuration>
+      </configurations>
+    </operation>
+
+
+    <operation
+        id="speechtotext"
+        description="Generates subtitles for video and audio files">
+      <configurations>
+        <configuration key="source-flavor">presenter/audio+stt</configuration>
+        <configuration key="target-flavor">captions/vtt+#{lang}</configuration>
+        <!-- Temporary fixed language until https://github.com/opencast/opencast/issues/6293 is fixed -->
+        <configuration key="language-code">en</configuration>
+        <configuration key="async">true</configuration>
+      </configurations>
+    </operation>
+
+
+  </operations>
+</definition>

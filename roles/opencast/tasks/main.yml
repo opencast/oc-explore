@@ -25,6 +25,13 @@
       - opencast-{{ opencast_role }}-{{ opencast_version }}
   notify: Restart opencast
 
+- name: Install Whisper and model
+  package:
+    name:
+      - whisper.cpp
+      - whisper.cpp-medium.noarch
+      - whisper.cpp-small.noarch
+
 - name: Import opencast configuration tasks
   ansible.builtin.include_tasks: install_configuration.yml
 

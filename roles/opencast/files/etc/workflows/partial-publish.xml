@@ -55,6 +55,20 @@
       </configurations>
     </operation>
 
+
+
+    <!-- Generate subtitles with whisper -->
+
+    <operation
+        id="include"
+        if="${genSubtitles}"
+        description="Generate subtitles with whispercpp">
+      <configurations>
+        <configuration key="workflow-id">partial-whispercpp</configuration>
+      </configurations>
+    </operation>
+
+
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
     <!-- Extract preview images                                            -->
     <!--                                                                   -->
@@ -242,6 +256,17 @@
         <configuration key="target-tags">engage-download</configuration>
       </configurations>
     </operation>
+
+    <operation
+      id="speechtotext-attach"
+      if="${genSubtitles}"
+      description="Attach generated subtitles">
+      <configurations>
+        <configuration key="target-flavor">captions/vtt+*</configuration>
+        <configuration key="target-tags">archive,subtitle,engage-download</configuration>
+      </configurations>
+    </operation>
+
 
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
     <!-- Publish to publication channels                                   -->

@@ -9,6 +9,8 @@
     mode: "0644"
   with_fileglob:
     - "etc/*"
+    - "etc/encoding/*"
+    - "etc/workflows/*"
   notify: Restart opencast
   tags:
     - copy_configuration

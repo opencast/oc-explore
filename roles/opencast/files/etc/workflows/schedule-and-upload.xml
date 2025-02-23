@@ -21,6 +21,12 @@
           "name": "straightToPublishing",
           "label": "Straight to publishing",
           "value": true
+        },
+        {
+          "type": "checkbox",
+          "name": "genSubtitles",
+          "label": "Generate subtitles",
+          "value": true
         }
       ]
     }]
@@ -39,6 +45,7 @@
       description="Applying default configuration values">
       <configurations>
         <configuration key="straightToPublishing">true</configuration>
+        <configuration key="genSubtitles">true</configuration>
       </configurations>
     </operation>
 
