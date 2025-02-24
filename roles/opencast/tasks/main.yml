@@ -32,6 +32,13 @@
       - whisper.cpp-medium.noarch
       - whisper.cpp-small.noarch
 
+- name: Install Tesseract with language packs
+  package:
+    name:
+      - tesseract
+      - tesseract-langpack-eng
+      - tesseract-langpack-deu
+
 - name: Import opencast configuration tasks
   ansible.builtin.include_tasks: install_configuration.yml
 
