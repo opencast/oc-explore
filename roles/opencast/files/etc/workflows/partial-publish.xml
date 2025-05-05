@@ -58,14 +58,16 @@
 
 
     <!-- Generate subtitles with whisper -->
-
     <operation
-        id="include"
-        if="${genSubtitles}"
-        description="Generate subtitles with whispercpp">
-      <configurations>
-        <configuration key="workflow-id">partial-whispercpp</configuration>
-      </configurations>
+        id="speechtotext"
+        description="Generates subtitles via Whisper">
+        <configurations>
+            <configuration key="source-flavor">*/source</configuration>
+            <configuration key="target-flavor">captions/source</configuration>
+            <!-- Temporary fixed language until https://github.com/opencast/opencast/issues/6293 is fixed -->
+            <configuration key="language-code">en</configuration>
+            <configuration key="async">true</configuration>
+        </configurations>
     </operation>
 
 
@@ -262,7 +264,7 @@
       if="${genSubtitles}"
       description="Attach generated subtitles">
       <configurations>
-        <configuration key="target-flavor">captions/vtt+*</configuration>
+        <configuration key="target-flavor">captions/source</configuration>
         <configuration key="target-tags">archive,subtitle,engage-download</configuration>
       </configurations>
     </operation>
