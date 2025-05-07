@@ -75,7 +75,11 @@ tobira_url = "https://{{ groups['tobira'][0] }}"
 # ```
 #
 # Default value: ["about", "graphiql"]
-#footer_links = ["about", "graphiql"]
+footer_links = [
+    { label = { default = "Opencast website" }, link = "https://opencast.org" },
+    { label = { default = "Impress", de = "Impressum" }, link = "https://opencast.org/contact/" },
+    "about",
+]
 
 # Additional metadata that is shown below a video. Example:
 #
