@@ -147,6 +147,14 @@ footer_links = [
 # Default value: false
 #lock_acl_to_series = false
 
+# Value of the `itunes:explicit` flag of RSS feeds for series and playlists.
+#
+# Should only be set to false if you are absolutely sure that all
+# content in your Tobira is safe for all audiences.
+#
+# Default value: true
+#explicit_rss_content = true
+
 
 [db]
 # The username of the database user.
@@ -395,7 +403,7 @@ secret_key = "jwt-key.pem"
 # If this is set, log messages are also written to this file. The string
 # `${cmd}` in this value is replaced by the subcommand name of the Tobira
 # process, e.g. `serve`, `worker` or `other` (for less important
-# commands). Example: "/var/log/tobira-${job}.log".
+# commands). Example: "/var/log/tobira-${cmd}.log".
 file = "/var/log/tobira/tobira-${cmd}.log"
 
 # If this is set to `false`, log messages are not written to stdout.
@@ -497,6 +505,27 @@ password = "{{ opencast_admin_password }}"
 #
 # Default value: 8
 #concurrent_download_tasks = 8
+
+# List of deletion modes that determine which, if any, realm pages are to be deleted
+# automatically when the corresponding Opencast item (series, event or playlist)
+# is deleted.
+# If configured, Tobira will delete the corresponding realm page(s) when they meet
+# the following conditions:
+# - Realm name is derived from the deleted item.
+# - Realm has no sub realms.
+# - Realm has no other blocks than the deleted item.
+#
+# The last option can be disabled by adding `:eager` to the deletion mode.
+#
+# Example:
+# ```
+# auto_delete_pages = ["series", "events:eager"]
+# ```
+#
+# This would delete series pages in non-eager mode and event pages in eager mode.
+#
+# Default value: []
+#auto_delete_pages = []
 
 
 [meili]
@@ -628,12 +657,22 @@ extra_css = "font.css"
 [matomo]
 # URL of your Matomo server. Example: "https://matomo.myuni.edu/matomo/".
 #
-# Note: Adding `matomo.js` to the URL configured here should result in a
-# URL to a publicly accessible JS file.
+# Note: Adding the filename of the Matomo script to the URL configured here should result in
+# a URL to a publicly accessible JS file.
 #server =
 
 # Matomo site ID, e.g. `side_id = "1"`
 #site_id =
+
+# Filename for the Matomo JS script.
+#
+# Default value: "matomo.js"
+#tracker_url_js = "matomo.js"
+
+# Filename for the Matomo PHP endpoint.
+#
+# Default value: "matomo.php"
+#tracker_url_php = "matomo.php"
 
 
 [player]
