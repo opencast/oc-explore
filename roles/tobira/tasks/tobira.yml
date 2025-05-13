@@ -86,7 +86,7 @@
     - tobira-check
   block:
     - name: Run tobira check
-      ansible.builtin.command: ./tobira check
+      ansible.builtin.command: ./tobira check --color never
       args:
         chdir: /opt/tobira
       register: tobira_check
