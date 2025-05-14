@@ -5,5 +5,7 @@
   become: true
   roles:
     - tobira
-    - certbot
+    - role: elan.opencast_certbot
+      opencast_certbot_letsencrypt_email: '{{ opencast_letsencrypt_email }}'
+      opencast_certbot_deploy_hook: /usr/bin/systemctl reload nginx
   tags: tobira

@@ -11,7 +11,9 @@
       configure_for_selinux: true
       configure_for_firewalld: true
     - role: nfs_client
-    - role: certbot
+    - role: elan.opencast_certbot
+      opencast_certbot_letsencrypt_email: '{{ opencast_letsencrypt_email }}'
+      opencast_certbot_deploy_hook: /usr/bin/systemctl reload nginx
 
 - name: Configure PostgreSQL and Opencast user on database hosts
   hosts: database

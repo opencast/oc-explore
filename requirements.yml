@@ -6,6 +6,8 @@ roles:
    version: v0.1.0
  - name: elan.simple_nginx_reverse_proxy
    version: 0.2.1
+ - name: elan.opencast_certbot
+   version: 1.0.0
  - name: elan.opencast_postgresql
  - name: elan.opencast_opensearch
    src: https://github.com/elan-ev/opencast_opensearch
