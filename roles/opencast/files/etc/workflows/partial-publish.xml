@@ -64,9 +64,8 @@
         <configurations>
             <configuration key="source-flavor">*/source</configuration>
             <configuration key="target-flavor">captions/source</configuration>
-            <!-- Temporary fixed language until https://github.com/opencast/opencast/issues/6293 is fixed -->
-            <configuration key="language-code">en</configuration>
             <configuration key="async">true</configuration>
+            <configuration key="limit-to-one">true</configuration>
         </configurations>
     </operation>
 
