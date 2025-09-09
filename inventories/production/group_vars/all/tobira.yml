@@ -12,6 +12,6 @@ tobira_meili_checksum: "sha256:c325630ea967462e397899bb733a9fb599b89dcc112f8c5cb
 tobira_meili_key: "{{ vault_tobira_meili_key }}"
 
 # Tobira
-tobira_binary_url: "https://github.com/elan-ev/tobira/releases/download/v3.6/tobira-x86_64-unknown-linux-musl"
-tobira_binary_checksum: "sha256:47d3b3d77b5e4cdf32fd67ade6d903f2eeec425b7873b4571e4f1e732a6a4b95"
+tobira_binary_url: "https://github.com/elan-ev/tobira/releases/download/v3.7/tobira-x86_64-unknown-linux-musl"
+tobira_binary_checksum: "sha256:a3950c98927728a77e480439ddcf331edbcd2fc6cbae9ec08168a49c07f113b0"
 tobira_trusted_external_key: "{{ vault_tobira_trusted_external_key }}"
