@@ -155,6 +155,13 @@ footer_links = [
 # Default value: true
 #explicit_rss_content = true
 
+# Whether users can remove events from a series they have write access for.
+# Should to be disabled when the connected Opencast requires events to always
+# be part of a series, as removing wouldn't work in that case.
+#
+# Default value: true
+#allow_series_event_removal = true
+
 
 [db]
 # The username of the database user.
@@ -229,6 +236,12 @@ tls_mode = "off"
 # Default value: "none"
 source = "tobira-session"
 
+# Whether to hide the login button in the header. Useful when only admins
+# are supposed to log into Tobira by visiting the login page directly.
+#
+# Default value: false
+#hide_login_button = false
+
 # Link of the login button. If not set, the login button internally
 # (not via `<a>`, but through JavaScript) links to Tobira's own login page.
 #login_link =
@@ -301,7 +314,7 @@ from_login_credentials = "opencast"
 [auth.jwt]
 # Signing algorithm for JWTs.
 #
-# Valid values: "ES256", "ES384"
+# Valid values: "ES256", "ES384", "ED25519"
 #
 # Default value: "ES384"
 signing_algorithm = "ES256"
@@ -378,6 +391,10 @@ secret_key = "jwt-key.pem"
 #
 # Default value: ["ROLE_USER_"]
 #user_role_prefixes = ["ROLE_USER_"]
+
+# Tenant specific admin role that has the same permission level
+# as ROLE_ADMIN for that tenant.
+#tenant_admin =
 
 
 [log]
