@@ -64,8 +64,9 @@
         <configurations>
             <configuration key="source-flavor">*/source</configuration>
             <configuration key="target-flavor">captions/source</configuration>
-            <configuration key="async">true</configuration>
+            <configuration key="target-tags">archive,subtitle,engage-download</configuration>
             <configuration key="limit-to-one">true</configuration>
+            <configuration key="track-selection-strategy">try_presenter_first</configuration>
         </configurations>
     </operation>
 
@@ -284,16 +285,6 @@
       <configurations>
         <configuration key="source-flavor">presentation/themed</configuration>
         <configuration key="target-tags">engage-download</configuration>
-      </configurations>
-    </operation>
-
-    <operation
-      id="speechtotext-attach"
-      if="${genSubtitles}"
-      description="Attach generated subtitles">
-      <configurations>
-        <configuration key="target-flavor">captions/source</configuration>
-        <configuration key="target-tags">archive,subtitle,engage-download</configuration>
       </configurations>
     </operation>
 
