@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition xmlns="http://workflow.opencastproject.org">
+    <id>partial-generate-captions-whisper</id>
+    <title>Generate Captions with Whisper</title>
+    <operations>
+
+        <!-- set default variables -->
+        <operation
+            id="defaults"
+            description="Applying default values">
+            <configurations>
+                <configuration key="captions_source_hastag_lang:en">false</configuration>
+            </configurations>
+        </operation>
+
+        <!-- delete old generated captions -->
+        <operation
+            id="tag"
+            description="Delete old captions">
+            <configurations>
+                <configuration key="source-tags">subtitle</configuration>
+                <configuration key="target-tags">-archive</configuration>
+            </configurations>
+        </operation>
+
+        <!-- generate captions in original audio language -->
+        <operation
+            id="speechtotext"
+            description="Generate subtitles (original language) via Whisper">
+            <configurations>
+                <configuration key="source-flavor">*/source</configuration>
+                <configuration key="target-flavor">captions/source</configuration>
+                <configuration key="target-tags">archive,subtitle</configuration>
+                <configuration key="limit-to-one">true</configuration>
+                <configuration key="track-selection-strategy">try_presenter_first</configuration>
+            </configurations>
+        </operation>
+
+        <!-- analyze the language of the generated subtitles -->
+        <operation
+            id="analyze-mediapackage"
+            description="Analyze media package and set control variables">
+            <configurations>
+                <configuration key="source-flavors">captions/source</configuration>
+                <configuration key="set-tag-variables">true</configuration>
+            </configurations>
+        </operation>
+
+        <!-- generate captions in english translation of original audio language -->
+        <operation
+            id="speechtotext"
+            description="Generate subtitles (english translation) via Whisper"
+            if="NOT ${captions_source_hastag_lang\:en}">
+            <configurations>
+                <configuration key="source-flavor">*/source</configuration>
+                <configuration key="target-flavor">captions/source</configuration>
+                <configuration key="target-tags">archive,subtitle</configuration>
+                <configuration key="translate">true</configuration>
+                <configuration key="limit-to-one">true</configuration>
+                <configuration key="track-selection-strategy">try_presenter_first</configuration>
+            </configurations>
+        </operation>
+
+    </operations>
+</definition>

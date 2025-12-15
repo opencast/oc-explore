@@ -98,6 +98,29 @@
       </configurations>
     </operation>
 
+
+    <!-- Generate subtitles via Whisper -->
+
+    <operation
+      id="include"
+      description="Generate Subtitles with Whisper"
+      if="${genSubtitles}">
+      <configurations>
+        <configuration key="workflow-id">partial-generate-captions-whisper</configuration>
+      </configurations>
+    </operation>
+
+    <!-- Archive generated subtitles -->
+
+    <operation
+      id="snapshot"
+      description="Archive preview information"
+      if="${genSubtitles}">
+      <configurations>
+        <configuration key="source-tags">archive</configuration>
+      </configurations>
+    </operation>
+
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
     <!-- Tag for review and cutting                                        -->
     <!--                                                                   -->
