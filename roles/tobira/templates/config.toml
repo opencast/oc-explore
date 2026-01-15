@@ -256,6 +256,17 @@ source = "tobira-session"
 # every channel this is sent over.
 trusted_external_key = "{{ tobira_trusted_external_key }}"
 
+# If `true`, Tobira attaches a JWT to all requests for Opencast static files.
+# This only considers requests to hosts listed in the `opencast` section
+# of the configuration. If necessary, use `other_hosts`.
+#
+# Experimental: this should work fine, but we don't have enough experience
+# yet to generally recommend turning this on. When you do, please report
+# any problems or weird behaviors to us!
+#
+# Default value: false
+#auth_static_files = false
+
 # Determines whether or not Tobira users are getting pre-authenticated against
 # Opencast when they visit external links like the ones to Opencast Studio
 # or the Editor. If you have an SSO-solution, you don't need this.
@@ -331,6 +342,18 @@ secret_key = "jwt-key.pem"
 # Default value: "30s"
 #expiration_time = "30s"
 
+# Duration for which JWTs guarding static files are valid. Only used if
+# `auth.auth_static_files` is enabled.
+#
+# Default value: "30s"
+#static_file_expiration_time = "30s"
+
+# Duration for which JWTs in download links are valid. Only used if
+# `auth.auth_static_files` is enabled.
+#
+# Default value: "3min"
+#download_expiration_time = "3min"
+
 
 [auth.roles]
 # The role giving a user "Tobira admin" status, giving them all
@@ -350,6 +373,11 @@ secret_key = "jwt-key.pem"
 #
 # Default value: "ROLE_TOBIRA_CAN_CREATE_SERIES"
 #can_create_series = "ROLE_TOBIRA_CAN_CREATE_SERIES"
+
+# The role granting permission to create new playlists through Tobira.
+#
+# Default value: "ROLE_USER"
+#can_create_playlists = "ROLE_USER"
 
 # The role granting permission to use Opencast Studio from Tobira.
 #
@@ -673,6 +701,27 @@ extra_css = "font.css"
 # Specify workflow to start after ingesting. If unset, Tobira does not
 # send any workflow ID, meaning Opencast will choose its default.
 #workflow =
+
+# Subtype of thumbnail image. Has to match the subtype used in the related
+# Opencast workflows and should be identical to what is set for the editor.
+# See https://github.com/opencast/opencast/blob/a68c337f11499a0a939a5a96bffa3898c1cd032c/etc/org.opencastproject.editor.EditorServiceImpl.cfg#L58
+#
+# Please note that `player+preview` should still be used for the final publication
+# as there are multiple operations in Opencast that rely on that hardcoded subtype,
+# meaning it cannot be overwritten by any configuration in these places.
+#
+# Default value: "player+preview"
+#thumbnail_subtype = "player+preview"
+
+# When uploading a thumbnail, this property is set to trigger
+# the operation that prepares the thumbnail for publication
+# in the default `partial-publish` workflow.
+# This needs to match the property in Opencast and should also be identical
+# to what is set for the editor when you don't use custom workflows for publication.
+# See https://github.com/opencast/opencast/blob/a68c337f11499a0a939a5a96bffa3898c1cd032c/etc/org.opencastproject.editor.EditorServiceImpl.cfg#L62
+#
+# Default value: "thumbnail_edited"
+#thumbnail_workflow_property = "thumbnail_edited"
 
 
 # Matomo integration (optional). Currently only used by Paella if configured.
