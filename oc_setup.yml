@@ -14,3 +14,10 @@
     - role: elan.opencast_repository
     - role: opencast
   tags: opencast
+
+- name: Run Octoka role
+  hosts: opencast
+  become: true
+  roles:
+    - role: octoka
+  tags: octoka
