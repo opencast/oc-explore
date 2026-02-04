@@ -26,3 +26,15 @@
   notify: Restart opencast
   tags:
     - copy_configuration
+
+- name: Copy UI config
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: '/etc/opencast/{{ item.split("etc/") | last }}'
+    owner: opencast
+    group: opencast
+    mode: "0644"
+  with_fileglob:
+    - "etc/ui-config/mh_default_org/editor/editor-settings.toml"
+  tags:
+    - copy_configuration
