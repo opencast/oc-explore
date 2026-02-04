@@ -38,6 +38,16 @@ operations:
       - target-flavor-subtype: trimmed
       - interactive: false
 
+  - id: speechtotext
+    description: Generates subtitles via Whisper
+    configurations:
+      - source-flavor: '*/source'
+      - target-flavor: captions/source
+      - target-tags: archive,subtitle,engage-download
+      - limit-to-one: true
+      - track-selection-strategy: try_presenter_first
+
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Extract preview images
 

@@ -2,8 +2,8 @@
 
 # Opencast
 admin_email: opencast-support@elan-ev.de
-opencast_version_major: 18
-opencast_version_minor: 5
+opencast_version_major: 19
+opencast_version_minor: 1
 # Enable Opencast release repository
 opencast_repository_enabled_release: true
 
