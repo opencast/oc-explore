@@ -40,7 +40,6 @@
     - logo-dark-narrow.svg
     - font.css
     - favicon.svg
-    - jwt-key.pem
   notify: Restart tobira
 
 - name: Deploy configuration
