@@ -103,7 +103,10 @@ trusted_keys = ["http://127.0.0.1:3080/.well-known/jwks.json"]
 # requests are allowed.
 #
 # Default value: []
-cors_allowed_origins = ["https://{{ groups['tobira'][0] }}"]
+cors_allowed_origins = [
+    "https://{{ groups['tobira'][0] }}",
+    "https://opencast-vr-virtuos-openstack.uni-osnabrueck.de",
+]
 
 # Where to look for a JWT in the HTTP request. First source has highest
 # priority. Each array element is an object. Possible sources:
