@@ -39,6 +39,7 @@ operations:
       - interactive: false
 
   - id: speechtotext
+    if: ${genSubtitles}
     description: Generates subtitles via Whisper
     configurations:
       - source-flavor: '*/source'
@@ -123,7 +124,7 @@ operations:
     exception-handler-workflow: partial-error
     description: Creating timeline preview images
     configurations:
-      - source-flavor: '*/trimmed'
+      - source-flavors: presenter/trimmed,presentation/trimmed
       - target-flavor: '*/timeline+preview'
       - target-tags: engage-download
       - image-count: 100
@@ -219,6 +220,12 @@ operations:
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Publish to publication channels
+
+  - id: tag
+    description: Mark ingested subtitles for publication
+    configurations:
+      - source-flavors: captions/source
+      - target-tags: +engage-download
 
   # Send the encoded material along with the metadata to the
   # publication channels.
