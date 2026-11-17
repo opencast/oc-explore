@@ -221,12 +221,6 @@ operations:
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Publish to publication channels
 
-  - id: tag
-    description: Mark ingested subtitles for publication
-    configurations:
-      - source-flavors: captions/source
-      - target-tags: +engage-download
-
   # Send the encoded material along with the metadata to the
   # publication channels.
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
